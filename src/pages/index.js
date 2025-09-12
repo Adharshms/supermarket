@@ -1,114 +1,58 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export default function Home() {
+  const products = [
+    { id: 1, name: "Space Apples", price: "₹120/kg", image: "https://via.placeholder.com/250x200/0a0a0a/ffffff?text=🚀+Apples" },
+    { id: 2, name: "Galaxy Milk", price: "₹60/L", image: "https://via.placeholder.com/250x200/0a0a0a/ffffff?text=🥛+Milk" },
+    { id: 3, name: "Lunar Bread", price: "₹45", image: "https://via.placeholder.com/250x200/0a0a0a/ffffff?text=🍞+Bread" },
+    { id: 4, name: "Mars Tomatoes", price: "₹30/kg", image: "https://via.placeholder.com/250x200/0a0a0a/ffffff?text=🍅+Tomatoes" },
+  ];
+
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div style={{ fontFamily: "Orbitron, Arial, sans-serif", background: "#0a0a0a", color: "#fff" }}>
+      {/* HEADER */}
+      <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 40px", borderBottom: "1px solid #222" }}>
+        <h1 style={{ margin: 0, fontSize: "28px", letterSpacing: "2px" }}>🚀 SpaceMart</h1>
+        <input
+          type="text"
+          placeholder="Search the galaxy..."
+          style={{ padding: "10px", width: "40%", borderRadius: "6px", border: "1px solid #444", background: "#111", color: "#fff" }}
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/pages/index.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        <button style={{ background: "#00e0ff", color: "#000", border: "none", padding: "10px 18px", borderRadius: "6px", fontWeight: "bold", cursor: "pointer" }}>
+          Cart (0)
+        </button>
+      </header>
+
+      {/* HERO */}
+      <section style={{ textAlign: "center", padding: "80px 20px", background: "linear-gradient(180deg, #000, #111)" }}>
+        <h2 style={{ fontSize: "36px", marginBottom: "20px" }}>Next-Gen Grocery Delivery 🚀</h2>
+        <p style={{ fontSize: "18px", color: "#aaa", maxWidth: "600px", margin: "0 auto" }}>
+          From Earth to Mars, shop futuristic groceries and cosmic essentials with interplanetary delivery.
+        </p>
+        <button style={{ marginTop: "30px", padding: "14px 28px", fontSize: "16px", background: "#00e0ff", color: "#000", border: "none", borderRadius: "8px", fontWeight: "bold", cursor: "pointer" }}>
+          Start Mission
+        </button>
+      </section>
+
+      {/* PRODUCTS */}
+      <main style={{ padding: "50px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: "30px" }}>
+        {products.map((p) => (
+          <div key={p.id} style={{ background: "#111", padding: "20px", borderRadius: "12px", border: "1px solid #222", textAlign: "center", transition: "0.3s", cursor: "pointer" }}>
+            <img src={p.image} alt={p.name} style={{ width: "100%", borderRadius: "10px", marginBottom: "15px" }} />
+            <h3 style={{ fontSize: "20px", marginBottom: "8px" }}>{p.name}</h3>
+            <p style={{ fontWeight: "bold", color: "#00e0ff" }}>{p.price}</p>
+            <button style={{ marginTop: "10px", padding: "10px 14px", background: "#00e0ff", color: "#000", border: "none", borderRadius: "6px", fontWeight: "bold" }}>
+              Add to Cart
+            </button>
+          </div>
+        ))}
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* FOOTER */}
+      <footer style={{ background: "#000", color: "#777", textAlign: "center", padding: "20px", borderTop: "1px solid #222" }}>
+        <p>© 2025 SpaceMart | Powered by SpaceX Commerce Technologies</p>
+        <p>
+          <a href="#" style={{ color: "#00e0ff", marginRight: "15px", textDecoration: "none" }}>Mission Control</a>
+          <a href="#" style={{ color: "#1adaf3ff", textDecoration: "none" }}>Privacy Policy</a>
+        </p>
       </footer>
     </div>
   );
